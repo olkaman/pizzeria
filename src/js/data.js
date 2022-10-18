@@ -24,7 +24,7 @@ dataSource.products = {
         type: 'radios',
         options: {
           latte: {label: 'Latte', price: 1, default: true},
-          cappuccino: {label: 'Cappuccino', price: 1},
+          cappuccino: {label: 'Cappuccino', price: 2},
           espresso: {label: 'Espresso', price: 1},
           macchiato : {label: 'Macchiato ', price: 1},
         },
@@ -95,6 +95,26 @@ dataSource.products = {
       '<img class="active ingredients-cheese" src="images/salad/cheese.svg" style="z-index: 6;">',
       '<img class="active ingredients-pepper" src="images/salad/black-pepper.svg" style="z-index: 7;">',
     ],
+    params: {
+      ingredients: {
+        label: 'Ingredients',
+        type: 'checkboxes',
+        options: {
+          cucumber: {label: 'Cucumber', price: 1, default: true},
+          tomatoes: {label: 'Tomatoes', price: 1, default: true},
+          olives: {label: 'Olives', price: 1, default: true},
+          feta: {label: 'Feta cheese', price: 1},
+          cheese: {label: 'Cheese', price: 1},
+          herbs: {label: 'Fresh herbs', price: 1, default: true},
+          pepper: {label: 'Black pepper', price: 1},
+        },
+      },
+    },
+  },
+  pancakes: {
+    name: 'Marvelous Pancakes',
+    price: 9,
+    description: 'A delicious pancakes with various fill.',
     params: {
       ingredients: {
         label: 'Ingredients',
