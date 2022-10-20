@@ -56,9 +56,6 @@
     constructor(element){
       const thisWidget = this;
 
-      console.log(thisWidget);
-      console.log(element);
-
       thisWidget.getElements(element);
       thisWidget.initActions();
       thisWidget.setValue(thisWidget.input.value);
@@ -98,11 +95,15 @@
 
       const newValue = parseInt(value);
 
-      if(thisWidget.value !== newValue && !isNaN(newValue) && (newValue >= settings.amountWidget.defaultMin) && (newValue <= settings.amountWidget.defaultMax)){
-        thisWidget.value = newValue;
-        thisWidget.announce();
+      thisWidget.value = settings.amountWidget.defaultValue;
+
+      if(thisWidget.value !== newValue && !isNaN(newValue)){
+        if (newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
+          thisWidget.value = newValue;
+        }
       }
       thisWidget.input.value = thisWidget.value;
+      thisWidget.announce();
     }
 
     announce(){
