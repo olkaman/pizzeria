@@ -109,7 +109,7 @@
     announce(){
       const thisWidget = this;
 
-      const e = new Event('updated');
+      const e = new Event('update');
       thisWidget.element.dispatchEvent(e);
     }
   }
