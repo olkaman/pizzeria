@@ -162,6 +162,7 @@
       thisCart.dom = {};
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
 
     initActions(){
@@ -170,6 +171,22 @@
       thisCart.dom.toggleTrigger.addEventListener('click', function(){
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
+    }
+
+    add(menuProduct){
+      const thisCart = this;
+
+      console.log('adding pro', menuProduct);
+
+      /*generate HTML of product in cart*/
+      const generatedHTML = templates.cartProduct(menuProduct);
+ 
+      /*create element using utils.createDOMFromHTML*/
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      thisCart.generatedDOM = generatedDOM;
+
+      /*add generatedDOM to menu*/
+      thisCart.dom.productList.appendChild(generatedDOM);
     }
   }
 
@@ -291,12 +308,14 @@
       thisProduct.cartButton.addEventListener('click', function(e){
         e.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
 
     processOrder(){
       const thisProduct = this;
       const formData = utils.serializeFormToObject(thisProduct.form);
+      console.log(formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -330,6 +349,9 @@
           }
         }
       }
+      
+      thisProduct.priceSingle = price;
+
       /*multiply price by amount*/
       price = price * thisProduct.amountWidget.value;
 
@@ -345,6 +367,57 @@
         thisProduct.processOrder();
       });
     }
+
+    addToCart(){
+      const thisProduct = this;
+
+      app.cart.add(thisProduct.prepareCartProduct());
+    }
+
+    prepareCartProduct(){
+      const thisProduct = this;
+
+      const productSummary = {
+        name: thisProduct.data.name,
+        id: thisProduct.id,
+        amount: thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        price: thisProduct.priceSingle * thisProduct.amountWidget.value,
+        params: thisProduct.prepareCartProductParams(),
+      };
+
+      return productSummary;
+    }
+
+    prepareCartProductParams(){
+      const thisProduct = this;
+      const formData = utils.serializeFormToObject(thisProduct.form);
+
+      const productIngredients = {};
+
+      // for every category (param)...
+      for(let paramID in thisProduct.data.params){
+        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+        const param = thisProduct.data.params[paramID];
+
+        productIngredients[paramID] = {
+          label: param.label,
+          options: {}
+        };
+        
+        // for every option in this category
+        for(let optionID in param.options){
+
+          if(formData.hasOwnProperty(paramID) && formData[paramID].includes(optionID)){
+            productIngredients[paramID].options[optionID] = optionID; 
+          }
+        }
+      }
+      
+      return productIngredients;
+    }
+
+    
   }
 
   app.init();
