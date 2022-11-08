@@ -5,12 +5,10 @@ class BaseWidget{
     thisWidget.dom = {};
     thisWidget.dom.wrapper = wrapperElement;
     thisWidget.correctValue = initialValue;
-    
   }
 
   get value(){
     const thisWidget = this;
-
     return thisWidget.correctValue;
   }
 
@@ -23,7 +21,6 @@ class BaseWidget{
       thisWidget.correctValue = newValue;
       thisWidget.announce();
     }
-
     thisWidget.renderValue();
   }
 

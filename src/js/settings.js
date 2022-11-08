@@ -9,6 +9,7 @@ export const select = {
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
+    tables: '.floor-plan',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -25,7 +26,7 @@ export const select = {
   },
   widgets: {
     amount: {
-      input: 'input.amount', // CODE CHANGED
+      input: 'input.amount',
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
@@ -43,6 +44,10 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    bookingButton: 'button[type="submit"]',
+    phoneNumber: 'input[name="phone"]',
+    email: 'input[name="address"]',
+    starters: 'input[name="starter"]',
   },
   nav: {
     links: '.main-nav a',
@@ -52,7 +57,8 @@ export const select = {
     product: '.cart__order-summary li',
     toggleTrigger: '.cart__summary',
     totalNumber: `.cart__total-number`,
-    totalPrice: '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
+    totalPrice:
+      '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
     subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
     deliveryFee: '.cart__order-delivery .cart__order-price-sum strong',
     form: '.cart__order',
@@ -66,7 +72,6 @@ export const select = {
     edit: '[href="#edit"]',
     remove: '[href="#remove"]',
   },
-  
 };
 
 export const classNames = {
@@ -80,13 +85,14 @@ export const classNames = {
   booking: {
     loading: 'loading',
     tableBooked: 'booked',
+    tableSelected: 'selected',
   },
   nav: {
     active: 'active',
   },
   pages: {
     active: 'active',
-  }
+  },
 };
 
 export const settings = {
@@ -94,7 +100,7 @@ export const settings = {
     defaultValue: 1,
     defaultMin: 1,
     defaultMax: 9,
-  }, 
+  },
   cart: {
     defaultDeliveryFee: 20,
   },
@@ -114,8 +120,8 @@ export const settings = {
     orders: 'orders',
     product: 'product',
     order: 'order',
-    booking: 'booking',
-    event: 'event',
+    booking: 'bookings',
+    event: 'events',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
@@ -124,8 +130,13 @@ export const settings = {
 };
 
 export const templates = {
-  menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
-  cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
-  bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
+  menuProduct: Handlebars.compile(
+    document.querySelector(select.templateOf.menuProduct).innerHTML
+  ),
+  cartProduct: Handlebars.compile(
+    document.querySelector(select.templateOf.cartProduct).innerHTML
+  ),
+  bookingWidget: Handlebars.compile(
+    document.querySelector(select.templateOf.bookingWidget).innerHTML
+  ),
 };
-

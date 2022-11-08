@@ -15,7 +15,6 @@ class Product{
     thisProduct.initOrderForm();
     thisProduct.initAmountWidget();
     thisProduct.processOrder();
-
   }
 
   renderInMenu(){
@@ -27,7 +26,6 @@ class Product{
     /*create element using utils.createDOMFromHTML*/
     const element = utils.createDOMFromHTML(productHTML);
     thisProduct.element = element;
-    console.log(element);
 
     /*find menu container*/
     const menuContainer = document.querySelector(select.containerOf.menu);

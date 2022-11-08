@@ -8,8 +8,6 @@ class AmountWidget extends BaseWidget{
 
     thisWidget.getElements(element);
     thisWidget.initActions();
-    console.log('amount', thisWidget);
-
   }
 
   getElements(){
@@ -18,7 +16,6 @@ class AmountWidget extends BaseWidget{
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
-
   }
 
   initActions(){
@@ -50,8 +47,6 @@ class AmountWidget extends BaseWidget{
 
     thisWidget.dom.input.value = thisWidget.value;
   }
-
-  
 }
 
 export default AmountWidget;
