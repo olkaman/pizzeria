@@ -285,18 +285,12 @@ class Booking {
       phone: thisBooking.dom.PhoneNumber.value,
       email: thisBooking.dom.email.value,
     };
-    console.log(
-      typeof payload.table,
-      typeof payload.duration,
-      typeof payload.ppl
-    );
+
     for (let starter of thisBooking.dom.starters) {
       if (starter.checked == true) {
         payload.starters.push(starter.value);
       }
     }
-
-    console.log(payload);
 
     const options = {
       method: 'POST',
@@ -322,6 +316,7 @@ class Booking {
         );
       });
     console.log('jest?', thisBooking.booked);
+    thisBooking.updateDOM();
   }
 }
 
